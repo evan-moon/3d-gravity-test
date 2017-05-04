@@ -40,7 +40,8 @@ export default {
             this.camSettings.far
         );
         this.renderer = new WebGLRenderer({
-            preserveDrawingBuffer: true
+            preserveDrawingBuffer: true,
+            antialias: true
         });
 
         this.controls = new OrbitControls(this.camera, this.renderer.domElement);
