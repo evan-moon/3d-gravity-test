@@ -1,6 +1,4 @@
 import './index.scss';
-import { a } from './scripts/modules/test';
 
-import { Vector2 } from 'three';
-
-console.log(a, Vector2);
+import dat from 'dat.gui';
+console.log(dat);
