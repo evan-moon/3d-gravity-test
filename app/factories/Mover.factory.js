@@ -6,7 +6,7 @@ import {
 import { darken } from '../algorithm/color.algorithm';
 
 export class Mover {
-    constructor(mass, velocity, location, id) {
+    constructor(mass, velocity, location, id, scene) {
         this.uid = `mover-${id}`;
         this.location = location;
         this.velocity = velocity;
@@ -35,12 +35,14 @@ export class Mover {
         this.mesh.receiveShadow = true;
 
         this.position = this.location;
+
+        this.parentScene = scene;
     }
 
-    addMover(scene) {
-        scene.add(this.mesh);
-        scene.add(this.selectionLight);
-        scene.add(this.line);
+    addMover() {
+        this.parentScene.add(this.mesh);
+        this.parentScene.add(this.selectionLight);
+        this.parentScene.add(this.line);
     }
 
     applyForce(force) {
@@ -63,11 +65,10 @@ export class Mover {
 
     eat(otherMover) {
         const newMass = this.mass + otherMover.mass;
-
         const newLocation = new Vector3(
-            (this.location.x * this.mass + otherMover.location.x * ohterMover.mass) / newMass,
-            (this.location.y * this.mass + ohterMover.location.y * ohterMover.mass) / newMass,
-            (this.location.z * this.mass + ohterMover.location.z * ohterMover.mass) / newMass
+            (this.location.x * this.mass + otherMover.location.x * otherMover.mass) / newMass,
+            (this.location.y * this.mass + otherMover.location.y * otherMover.mass) / newMass,
+            (this.location.z * this.mass + otherMover.location.z * otherMover.mass) / newMass
         );
 
         const newVelocity = new Vector3(
@@ -80,13 +81,7 @@ export class Mover {
         this.velocity = newVelocity;
         this.mass = newMass;
 
-        if(m.selected) this.selected = true;
-    }
-
-    kill(scene) {
-        this.alive = false;
-        this.selectionLight.intensity = 0;
-        scene.remove(this.mesh);
+        otherMover.kill();
     }
 
     attract(otherMover, options) {
@@ -96,8 +91,16 @@ export class Mover {
 
         force = force.normalize();
 
-        const strength = -(options.G * this.mass * otherMover.mass) / (d**2);
+        const strength = -(options.G * this.mass * otherMover.mass) / (distance ** 2);
+        force = force.multiplyScalar(strength);
+
         this.applyForce(force);
+    }
+
+    kill() {
+        this.alive = false;
+        this.selectionLight.intensity = 0;
+        this.parentScene.remove(this.mesh);
     }
 
     display(totalMass) {
@@ -117,5 +120,19 @@ export class Mover {
         else {
             this.selectionLight.intensity = 0;
         }
+    }
+
+    showTrace(TRAILS_LENGTH) {
+        this.parentScene.remove(this.line);
+        let geometry = new Geometry();
+        geometry.vertices = this.vertices.slice();
+        geometry.verticesNeedUpdate = true;
+
+        if(!this.alive) this.vertices.shift();
+        while(geometry.vertices.length > parseInt(TRAILS_LENGTH)) {
+            geometry.vertices.shift();
+        }
+        this.line = new Line(geometry, this.line.material);
+        this.parentScene.add(this.line);
     }
 }
