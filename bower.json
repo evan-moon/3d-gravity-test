@@ -1,0 +1,16 @@
+{
+    "name": "3d-gravity-test",
+    "private": true,
+    "dependencies": {
+        "jquery": "~2.1.1",
+        "three.js": "threejs#*"
+    },
+    "overrides": {
+        "three.js": {
+            "main": [
+                "build/three.min.js",
+                "examples/js/controls/OrbitControls.js"
+            ]
+        }
+    }
+}
