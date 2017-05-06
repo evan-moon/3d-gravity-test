@@ -73,9 +73,9 @@ export class Mover {
         );
 
         const newVelocity = new Vector3(
-            (this.velocity.x *this.mass + otherMover.velocity.x * otherMover.mass) / newMass,
-            (this.velocity.y *this.mass + otherMover.velocity.y * otherMover.mass) / newMass,
-            (this.velocity.z *this.mass + otherMover.velocity.z * otherMover.mass) / newMass
+            (this.velocity.x * this.mass + otherMover.velocity.x * otherMover.mass) / newMass,
+            (this.velocity.y * this.mass + otherMover.velocity.y * otherMover.mass) / newMass,
+            (this.velocity.z * this.mass + otherMover.velocity.z * otherMover.mass) / newMass
         );
 
         this.location = newLocation;
@@ -107,7 +107,7 @@ export class Mover {
             this.selectionLight.intensity = 2 * this.mass / totalMass;
 
             let emissiveColor = this.color.getHex().toString(16);
-            emissiveColor = darken(emissiveColor, -1 + this.mass / totalMass);
+                emissiveColor = darken(emissiveColor, -1 + this.mass / totalMass);
 
             this.basicMaterial.emissive.setHex(parseInt(emissiveColor, 16));
         }

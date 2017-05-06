@@ -150,16 +150,16 @@ export default {
         let movers = this.movers;
 
         movers.forEach((o1, i) => {
+            if(!o1.alive) return false;
             if(o1.alive) {
                 this.totalMass += o1.mass;
-
                 movers.forEach((o2, j) => {
                     if(o1.alive && o2.alive && i !== j) {
                         let distance = o1.location.distanceTo(o2.location);
-                        let r1 = (o1.mass / MASS_FACTOR / MASS_FACTOR / 4 * Math.PI) ** (1/3),
-                            r2 = (o2.mass / MASS_FACTOR / MASS_FACTOR / 4 * Math.PI) ** (1/3);
+                        let r1 = (o1.mass / MASS_FACTOR / MASS_FACTOR / (4 * Math.PI)) ** (1/3),
+                            r2 = (o2.mass / MASS_FACTOR / MASS_FACTOR / (4 * Math.PI)) ** (1/3);
 
-                        if(distance < r1 + r2) o2.eat(o1);
+                        if(distance <= r1 + r2) o2.eat(o1);
                         else o2.attract(o1, this.options);
                     }
                 });
