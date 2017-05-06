@@ -21,7 +21,7 @@ export default {
             near: 0.001,
             far: 1000000000.0
         };
-        this.currentRadius = 2000.0;
+        this.currentRadius = 12000.0;
         this.options = initOptions;
         this.options.RESET = () => { this.reset(); };
 
@@ -164,7 +164,7 @@ export default {
                         let radiusM2 = (m2.mass / MASS_FACTOR / MASS_FACTOR / 4 * Math.PI) ** (1/3);
 
                         if(distance < radiusM1 + radiusM2) { // CRAHSED
-                            console.log('crashed => ', m1, m2);
+                            console.log('crashed => ', m1.uid, m2.uid);
                             m2.eat(m1);
                             // m2.attract(m1, this.options);
                         }

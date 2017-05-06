@@ -5,6 +5,8 @@ import {
 } from 'three';
 import { darken } from '../algorithm/color.algorithm';
 
+import Gravity from '../algorithm/gravity.algorithm';
+
 export class Mover {
     constructor(mass, velocity, location, id, scene) {
         this.uid = `mover-${id}`;
@@ -85,14 +87,7 @@ export class Mover {
     }
 
     attract(otherMover, options) {
-        let force = new Vector3().subVectors(this.location, otherMover.location),
-            distance = force.length();
-        if(distance < 0) distance *= -1;
-
-        force = force.normalize();
-
-        const strength = -(options.G * this.mass * otherMover.mass) / (distance ** 2);
-        force = force.multiplyScalar(strength);
+        const force = Gravity.calcG(this, otherMover, options.G);
 
         this.applyForce(force);
     }
