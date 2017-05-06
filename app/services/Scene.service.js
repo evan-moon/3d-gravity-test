@@ -148,33 +148,23 @@ export default {
 
     calcMovers() {
         let movers = this.movers;
-        for (let i = movers.length - 1; i >= 0; i--) {
-            let m1 = movers[i];
 
-            if(m1.alive) {
-                this.totalMass += m1.mass;
-                // if(m1.mass > maximunMass) maximunMass = m1.mass;
+        movers.forEach((o1, i) => {
+            if(o1.alive) {
+                this.totalMass += o1.mass;
 
-                for (let j = movers.length - 1; j >= 0; j--) {
-                    let m2 = movers[j];
+                movers.forEach((o2, j) => {
+                    if(o1.alive && o2.alive && i !== j) {
+                        let distance = o1.location.distanceTo(o2.location);
+                        let r1 = (o1.mass / MASS_FACTOR / MASS_FACTOR / 4 * Math.PI) ** (1/3),
+                            r2 = (o2.mass / MASS_FACTOR / MASS_FACTOR / 4 * Math.PI) ** (1/3);
 
-                    if(m1.alive && m2.alive && i !== j) {
-                        let distance = m1.location.distanceTo(m2.location);
-                        let radiusM1 = (m1.mass / MASS_FACTOR / MASS_FACTOR / 4 * Math.PI) ** (1/3);
-                        let radiusM2 = (m2.mass / MASS_FACTOR / MASS_FACTOR / 4 * Math.PI) ** (1/3);
-
-                        if(distance < radiusM1 + radiusM2) { // CRAHSED
-                            console.log('crashed => ', m1.uid, m2.uid);
-                            m2.eat(m1);
-                            // m2.attract(m1, this.options);
-                        }
-                        else {
-                            m2.attract(m1, this.options);
-                        }
+                        if(distance < r1 + r2) o2.eat(o1);
+                        else o2.attract(o1, this.options);
                     }
-                }
+                });
             }
-        }
+        });
 
         this.updateMovers();
     },

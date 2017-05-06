@@ -14,7 +14,6 @@ export class Mover {
         this.velocity = velocity;
         this.acceleration = new Vector3(0.0, 0.0, 0.0);
         this.mass = mass;
-        this.c = 0xffffff;
         this.alive = true;
 
         this.geometry = new SphereGeometry(100, SPHERE_SIDES, SPHERE_SIDES);
