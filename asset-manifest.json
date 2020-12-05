@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/3d-gravity-test/static/css/main.3903ef11.chunk.css",
+    "main.js": "/3d-gravity-test/static/js/main.632be29f.chunk.js",
+    "main.js.map": "/3d-gravity-test/static/js/main.632be29f.chunk.js.map",
+    "runtime-main.js": "/3d-gravity-test/static/js/runtime-main.cf3c4b1c.js",
+    "runtime-main.js.map": "/3d-gravity-test/static/js/runtime-main.cf3c4b1c.js.map",
+    "static/js/2.17132a1d.chunk.js": "/3d-gravity-test/static/js/2.17132a1d.chunk.js",
+    "static/js/2.17132a1d.chunk.js.map": "/3d-gravity-test/static/js/2.17132a1d.chunk.js.map",
+    "static/js/3.a9e29786.chunk.js": "/3d-gravity-test/static/js/3.a9e29786.chunk.js",
+    "static/js/3.a9e29786.chunk.js.map": "/3d-gravity-test/static/js/3.a9e29786.chunk.js.map",
+    "index.html": "/3d-gravity-test/index.html",
+    "static/css/main.3903ef11.chunk.css.map": "/3d-gravity-test/static/css/main.3903ef11.chunk.css.map",
+    "static/js/2.17132a1d.chunk.js.LICENSE.txt": "/3d-gravity-test/static/js/2.17132a1d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cf3c4b1c.js",
+    "static/js/2.17132a1d.chunk.js",
+    "static/css/main.3903ef11.chunk.css",
+    "static/js/main.632be29f.chunk.js"
+  ]
+}
