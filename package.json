@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://evan-moon.github.io/3d-gravity-test",
+  "homepage": "https://evan-moon.github.io/3d-gravity-test/",
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
