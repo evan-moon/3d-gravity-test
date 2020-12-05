@@ -11,7 +11,7 @@ import {
   Light,
   Color,
 } from 'three';
-import { darken, getRandomColor } from '../utils/colors';
+import { darken } from '../utils/colors';
 import Gravity from '../utils/gravity';
 
 export class Mover {

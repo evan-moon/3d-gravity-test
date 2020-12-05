@@ -15,7 +15,3 @@ export function darken(color: string, percent: number) {
     .toString(16)
     .slice(1);
 }
-
-export function getRandomColor() {
-  return Math.floor(Math.random() * 16777215).toString(16);
-}
